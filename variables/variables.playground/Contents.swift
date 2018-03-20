@@ -172,4 +172,111 @@ let index = -5
 //precondition(index >= 0, "Los indices deben de ser mayores a 0")
 //preconditionFailure("Indices deben ser positivos")
 
+let (n1,n2) = (1,5)
+
+//Avoid overflow
+UInt8.max&+1
+
+//Comparación de tuplas
+(1,"ABC")<(2,"CDE")
+(2,"ABC")<(2,"ABC")
+(4,"A")==(4,"A")
+
+//Operador terniario
+///pregunta ? true : false
+let wallet = 20
+let isPayday = true
+let newWallet = wallet + (isPayday ? 50 : 0)
+let variable = (5 == 5) ? 5 : 0
+
+//nil(a ?? b)
+//a != nil ? a! : b
+let defaultColor = "green"
+var userColor:String?
+var colorSelected = userColor ?? defaultColor
+
+//Rangos
+//Cerrados (incluyentes) (a...b) -> a <= x <= b
+for index in 1...8 {
+    print("\(index)")
+}
+print("***")
+
+//Semiabiertos (a..<b) -> a <= x < b
+for index in 1..<8 {
+    print("\(index)")
+}
+print("***")
+
+//Unilateral (a..) o (..a)
+let numbers=[0,1,2,3,4,5,6]
+for index in numbers[2...] {
+    print("\(index)")
+}
+print("***")
+
+for index in numbers[..<2] {
+    print("\(index)")
+}
+print("***")
+
+//Desde infinito hasta n
+let range = ...5
+range.contains(7)
+range.contains(-2)
+range.contains(4)
+
+
+var s = String()
+s.isEmpty
+
+let questionMark:Character = "?"
+let dogArray:[Character] = ["🐩","🐕","🐶","🌭"]
+let dogString = String(dogArray)
+
+//Unicode
+print("\u{1F496}")
+print("\u{65}\u{301}")
+print("\u{D55C}")
+let korean:Character = "\u{D55C}"
+let decompose:Character = "\u{1112}\u{1161}\u{11AB}"
+print("\u{65}\u{301}\u{20DD}")
+let patriots:Character = "\u{1F1FA}\u{1F1F8}"
+var animals = "animals"
+print("\(animals.count)")
+
+//Indices
+var welcome2 = "Hello world"
+welcome2[welcome2.startIndex]
+welcome2[welcome2.index(before:welcome2.endIndex)]
+let indice = welcome2.index(welcome2.startIndex,offsetBy:7)
+welcome2[indice]
+
+for index in welcome2.indices {
+    
+}
+
+welcome2.insert("!",at:welcome2.endIndex)
+welcome2.insert(contentsOf:"!",at:welcome2.endIndex)
+welcome2.insert(contentsOf:"*",at:welcome2.index(welcome2.endIndex,offsetBy:-3))
+print(welcome2)
+welcome2.remove(at:welcome2.index(before:welcome2.endIndex))
+print(welcome2)
+
+let range2 = welcome2.index(welcome2.endIndex,offsetBy:-3)..<welcome2.endIndex
+welcome2.removeSubrange(range2)
+print(welcome2)
+
+let blankSpace = welcome2.index(of:" ") ?? welcome2.endIndex
+let first = welcome2[..<blankSpace]
+let second = welcome2[blankSpace...]
+let newString = String(first)
+
+welcome2.hasPrefix("Helloo")
+welcome2.hasSuffix("Helloo")
+
+
+
+
+
 
