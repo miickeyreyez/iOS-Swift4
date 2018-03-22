@@ -275,6 +275,77 @@ let newString = String(first)
 welcome2.hasPrefix("Helloo")
 welcome2.hasSuffix("Helloo")
 
+//Arrays
+var someInts :[Int] = []
+var moreInts = [Int]()
+
+var threeDoubles = Array(repeating:0.0,count:3)
+var sixDoubles = threeDoubles + threeDoubles
+
+var shoppingList : [String] = ["Tortillas","Cebolla","Pollo"]
+shoppingList.append("Salsa")
+shoppingList.isEmpty
+shoppingList += ["Aguacate","Chicharrón"]
+shoppingList[0]
+shoppingList[0] = "Frijoles"
+print(shoppingList)
+shoppingList[3...5] = ["Guacamole"]
+print(shoppingList)
+shoppingList.insert("Mostaza",at:0)
+print(shoppingList)
+shoppingList.remove(at:0)
+print(shoppingList)
+shoppingList.removeLast()
+print(shoppingList)
+
+for z in shoppingList {
+    print(z)
+}
+
+for (index, item) in shoppingList.enumerated() {
+    print("\(index+1) : \(item)")
+}
+
+//Sets
+//Set<Element>
+var letters = Set<Character>()
+letters.insert("a")
+letters = []
+
+var favFood:Set<String> = ["Pizza","Hamburguesa","Hot dog"]
+var moreFood:Set = ["Pescado","Carne"]
+favFood.remove("Hot dog")
+favFood.contains("Hot dog")
+
+let pares: Set = [0,2,4,6,8]
+let impares: Set = [1,3,5,7,9]
+let primos: Set = [2,3,5,7,11]
+
+print(pares.union(impares).sorted())
+print(pares.intersection(impares).sorted())
+print(pares.subtracting(primos).sorted())
+print(pares.symmetricDifference(primos).sorted())
+
+let houseAnimals:Set = ["🐶","😾"]
+let farmAnimals:Set = ["🐮","🐷","🐥","🐑","😾","🐶"]
+let cityAnimals:Set = ["🐭","🕊"]
+
+houseAnimals.isSubset(of: farmAnimals)
+farmAnimals.isSuperset(of: houseAnimals)
+farmAnimals.isStrictSubset(of: houseAnimals)
+farmAnimals.isStrictSuperset(of: houseAnimals)
+farmAnimals.isDisjoint(with: cityAnimals)
+
+
+
+
+
+
+
+
+
+
+
 
 
 
