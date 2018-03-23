@@ -336,6 +336,65 @@ farmAnimals.isStrictSubset(of: houseAnimals)
 farmAnimals.isStrictSuperset(of: houseAnimals)
 farmAnimals.isDisjoint(with: cityAnimals)
 
+//Diccionarios
+var integerNames = [Int:String]()
+integerNames[32] = "32"
+integerNames = [:]
+
+var airports : [String:String] = ["CDMX":"CDMX","Tijuana":"BC","Toluca":"Edo. Mex"]
+print(airports)
+
+var pass = ["Ingles":true,"Maths":false]
+airports["Puebla"] = "Puebla"
+print(airports)
+
+airports.updateValue("Zacatlan", forKey: "Puebla")
+print(airports)
+
+let oldValue = airports.updateValue("Benito Juárez", forKey: "CDMX")
+print(oldValue)
+print(airports)
+
+airports["Tijuana"] = nil
+print(airports)
+
+let removedValue = airports.removeValue(forKey: "Puebla")
+print(removedValue)
+print(airports)
+
+for (airportKey,airportValue) in airports {
+    print("\(airportKey) - \(airportValue)")
+}
+
+print("*****")
+
+for (_,airportValue) in airports {
+    print("\(airportValue)")
+}
+
+print("*****")
+
+for airportKey in airports.keys {
+    print("\(airportKey)")
+}
+
+print("*****")
+
+for airportValue in airports.values {
+    print("\(airportValue)")
+}
+
+let airportKeys = [String](airports.keys)
+let airportValues = [String](airports.values)
+print(airportKeys)
+print(airportValues)
+
+
+
+
+
+
+
 
 
 
