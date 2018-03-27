@@ -389,7 +389,107 @@ let airportValues = [String](airports.values)
 print(airportKeys)
 print(airportValues)
 
+for i in 1...10 {
+    print(i)
+}
 
+//Conteo interno de una variable que no se utiliza
+for _ in 1...10 {
+    print("*")
+}
+
+//Ir de n en n
+for tick in stride(from:0, to:10, by:2)
+{
+    print(tick)
+}
+
+for tick in stride(from:0, through:10, by:2)
+{
+    print(tick)
+}
+
+var board = [Int](repeating:0,count:10)
+print(board)
+
+let num1 = 0
+let num2 = 10
+var counter = 0
+
+
+while num1 < num2 {
+    print(counter)
+    counter += 1
+    if counter == num2 {
+        break
+    }
+}
+
+let point = (2,-2)
+switch point {
+case let(x,y) where x == y:
+    print("Iguales")
+case let(x,y) where x == -y:
+    print("Iguales negativos")
+case let(x,y):
+    print("Números diferentes")
+}
+
+for iterator1 in 1...10 {
+    if iterator1 == 5 {
+        continue }
+    else {
+        print(iterator1) }
+}
+
+//Fallthrough
+let numberFour = 4
+switch numberFour {
+case 4:
+    print(numberFour)
+    fallthrough
+default:
+    print("es nuestro número")
+}
+
+//Sentencia nominal
+/*https://danericoding.wordpress.com/2017/11/03/s2-01-control-de-flujo*/
+ 
+var contador = 0
+gameloop: while contador < 10 {
+    print(contador)
+    contador += 1
+    switch contador {
+    case 9:
+    break gameloop
+    default:
+    continue gameloop
+    }
+}
+
+//Sentencia guard
+func greet(person:[String:String])
+{
+    guard let name = person["name"] else {
+        return
+    }
+    print("Hola \(name)")
+    guard let lugar = person["location"] else {
+        return
+    }
+    print("Estás en \(lugar)")
+}
+
+greet(person:["name":"Miguel"])
+greet(person:["location":"México"])
+greet(person:["name":"Miguel","location":"México"])
+
+if #available(iOS 10, macOS 10.12, *) { //watchOS, tvOS
+    //Usa apis de iOS 10 en iOS y mac 10.12 en OSX
+    
+} else {
+    //Usa apis anteriores
+}
 
 
 
