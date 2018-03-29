@@ -497,18 +497,78 @@ if #available(iOS 10, macOS 10.12, *) { //watchOS, tvOS
     //Usa apis anteriores
 }
 
+func sayHello(person: String) -> String {
+    return "Hola \(person)"
+}
 
+print(sayHello(person: "Miguel"))
 
+func swapInts(a: inout Int, b:inout Int)
+{
+    var temp = a
+    a = b
+    b = temp
+}
 
+var int1 = 4
+var int2 = 5
+swapInts(a:&int1,b:&int2)
+print("\(int1) - \(int2)")
 
+func add2Ints(_ a:Int, _ b:Int) -> Int {
+    return a + b
+}
 
+print(add2Ints(3,4))
 
+var mathFunction:(Int,Int) -> Int = add2Ints
 
+print(mathFunction(2,2))
 
+func printMathResult(_ mathFunction:(Int,Int) -> Int, _ a:Int, _ b:Int) -> Int {
+    print(mathFunction(a,b))
+    return mathFunction(a,b)
+}
 
+print(printMathResult(add2Ints,3,9))
 
+printMathResult({nint1, nint2 -> Int in return nint1 * nint2 }, 4, 13)
 
+func stepForward(_ int:Int) -> Int {
+    return int + 1
+}
 
+func stepBackward(_ int:Int) -> Int {
+    return int - 1
+}
+
+func chooseStepFunction(backward:Bool) -> (Int) -> Int {
+    return backward ? stepBackward : stepForward
+}
+
+print("*****")
+
+var currentValue = 3
+let moveToZero = chooseStepFunction(backward: currentValue > 0)
+
+while currentValue != 0 {
+    print(currentValue)
+    currentValue = moveToZero(currentValue)
+}
+
+func chooseStepFunction2(backward: Bool) -> (Int) -> Int {
+    func newStepForward(input: Int) -> Int {return input + 1}
+    func newStepBackward(input: Int) -> Int {return input - 1}
+    return backward ? newStepBackward : newStepForward
+}
+
+var currentValue2 = -5
+let moveToZero2 = chooseStepFunction2(backward: currentValue2 > 0)
+
+while currentValue2 != 0 {
+    print(currentValue2)
+    currentValue2 = moveToZero2(currentValue2)
+}
 
 
 
