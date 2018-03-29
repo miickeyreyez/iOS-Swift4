@@ -425,6 +425,12 @@ while num1 < num2 {
     }
 }
 
+var cuenta = 0
+repeat {
+    print("Cuenta: \(cuenta)")
+    cuenta += 1
+} while cuenta < 10
+
 let point = (2,-2)
 switch point {
 case let(x,y) where x == y:
