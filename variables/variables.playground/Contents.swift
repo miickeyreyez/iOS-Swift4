@@ -805,5 +805,47 @@ func evaluate (_ expression:ArithmeticExpression) -> Int {
 
 print(evaluate(mul))
 
+class SoClass{
+    
+}
+
+struct someStruct{
+    
+}
+
+struct Resolution{
+    var width = 0
+    var height = 0
+}
+
+class VideoMode{
+    var name:String?
+    var resoultion = Resolution()
+    var frameRate = 0.0
+    var interlaced = false
+}
+
+let resolution = Resolution()
+let videoMode = VideoMode()
+
+let hd = Resolution(width:1920,height:1080)
+
+var cinema = hd
+cinema.width = 2048
+
+let tenEighty = VideoMode()
+tenEighty.resoultion = hd
+tenEighty.interlaced = true
+tenEighty.name = "1080i"
+tenEighty.frameRate = 25.0
+
+let newTenEighty = tenEighty
+newTenEighty.frameRate = 30.0
+
+print(newTenEighty.frameRate)
+
+print(newTenEighty === tenEighty)
+
+
 
 
