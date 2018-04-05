@@ -570,9 +570,240 @@ while currentValue2 != 0 {
     currentValue2 = moveToZero2(currentValue2)
 }
 
+//Closures
+/*Funciones globales que tienen un nombre y no capturan un valor
+  Funciones anidadas con un nombre que pueden capturar valores de la función englobante
+  Funciones sin nombre escrito en un contexto dentro de otra función que puede capturar valores del contexto que la rodea
+ 
+ Casos típicos: Inferir un parámetro y devolver un valor de retorn de un contexto
+ Hacer un retorno implícito de una expresión simple
+ Nomenclatura simplificada (shorthand)
+ Sintaxis de closure para funciones específicas
+ */
+
+let people = ["Miguel","Angel","Oscar","Alfredo"]
+
+func sortBackward(_ s1:String, _ s2:String) -> Bool {
+    return s1 > s2
+}
+
+var peopleReversed = people.sorted(by:sortBackward)
+print(peopleReversed)
+
+/*
+ Sintaxis de closures
+ {
+    (parámetros) -> Valor de retorno in
+    //Código de closure
+ }
+ */
+
+peopleReversed = people.sorted(by:{(s1: String, s2: String) -> Bool in return s1 > s2})
+print(peopleReversed)
+
+peopleReversed = people.sorted(by:{s1, s2 in return s1 > s2})
+print(peopleReversed)
+
+peopleReversed = people.sorted(by:{s1, s2 in s1 > s2})
+print(peopleReversed)
+
+peopleReversed = people.sorted(by:{$0 > $1})
+print(peopleReversed)
+
+//peopleReversed = people.sorted(by:>)
+//print(peopleReversed)
 
 
+func functionThatTakesAClosure(closure: () -> Void) {
+    //Código de la función
+}
 
+functionThatTakesAClosure(closure:{
+    //Esto es el cuerpo del closure
+})
+
+functionThatTakesAClosure(){
+  //Trailing closure con el cuerpo del método a ejecutar
+}
+
+people.sorted(){$0 > $1}
+people.sorted{$0 > $1}
+
+
+let digitNames = [0:"Cero",1:"Uno",2:"Dos",3:"Tres",4:"Cuatro",5:"Cinco",6:"Seis",7:"Siete",8:"Ocho",9:"Nueve",10:"Diez"]
+
+let numbersArray = [18,29,325,1008]
+
+let StringNumbers = numbersArray.map { (number) -> String in
+    var number = number
+    var output = ""
+    
+    repeat {
+        output = digitNames[number%10]! + output
+        number /= 10
+    } while number > 0
+    
+    return output
+    
+}
+
+print(StringNumbers)
+
+func makeIncrement(forIncrement amount:Int) -> () -> Int {
+    var runningTotal = 0
+    
+    func incrementer() -> Int {
+        runningTotal += amount
+        return runningTotal
+    }
+    
+    return incrementer
+}
+
+let incrementByFive = makeIncrement(forIncrement: 5)
+incrementByFive()
+
+var completionHandlers :[() -> Void] = []
+func someFunctionWithEscapingClosures(completionHandler: @escaping () -> Void) {
+    completionHandlers.append(completionHandler)
+}
+
+func someFunctionWithNonEscapingClosure(closure: ()-> Void){
+    closure()
+}
+
+class SomeClass {
+    var x = 10
+    
+    func doSomething(){
+        someFunctionWithEscapingClosures {
+            self.x = 100
+        }
+        someFunctionWithNonEscapingClosure {
+            x = 200
+        }
+    }
+}
+
+let theElement = SomeClass()
+theElement.doSomething()
+print(theElement.x)
+
+completionHandlers.first?()
+print(theElement.x)
+
+//Autoclosure
+var customers = ["Cristina","Alejandro","Victor","Daniela","Angel","Miguel"]
+
+//let customerProvider = customers.remove(at:0)
+let customerProvider = { customers.remove(at:0) }
+print(customers.count)
+print("El siguiento de la lista es \(customerProvider())")
+print(customers.count)
+
+func serve(customer customerProvider:() -> String){
+    print("El siguiento de la lista es \(customerProvider())")
+}
+
+serve(customer: {customers.remove(at:0)})
+
+func serve(customer customerProvider:@autoclosure () -> String){
+    print("El siguiento de la lista es \(customerProvider())")
+}
+
+serve(customer: customers.remove(at:0))
+
+var customersProviders : [() -> String] = []
+func collectCustomersProvider(_ customerProvider: @autoclosure @escaping() -> String){
+    customersProviders.append(customerProvider)
+}
+
+collectCustomersProvider(customers.remove(at:0))
+collectCustomersProvider(customers.remove(at:0))
+
+print("Hemos preparado a \(customersProviders.count)")
+
+for customerProvider in customersProviders {
+    print("Atendiento a \(customerProvider())")
+}
+
+enum compassPoint {
+    case north
+    case south
+    case east
+    case west
+}
+
+ var direction2Go = compassPoint.north
+direction2Go = .south
+
+var direction2GoAgain : compassPoint = .east
+
+switch direction2Go {
+    case .north:
+    print("Norte")
+    case .south:
+    print("Sur")
+    case .east:
+    print("Este")
+    case .west:
+    print("Oeste")
+    default:
+    print("Nada")
+}
+
+enum barCode {
+    case upc(Int, Int, Int, Int)
+    case qr(String)
+}
+
+var productBarCode = barCode.upc(6,71680,01362,4)
+productBarCode = .qr("LDKSFASDGAXZ")
+
+switch productBarCode {
+case let .upc(par1,par2,par3,par4):
+    print("Es un código de barras")
+case .qr(let codigo):
+    print("Es un código qr")
+}
+
+enum Planet:Int {
+    case mercurio = 1,venus,tierra,marte,jupiter,saturno,urano,neptuno
+}
+
+print(Planet.tierra.rawValue)
+
+enum CompassPoint: String {
+    case north,south,east,weast
+}
+print(CompassPoint.north.rawValue)
+
+let possiblePlanet = Planet(rawValue:6)
+print(possiblePlanet)
+
+indirect enum ArithmeticExpression {
+    case number(Int)
+    case addition(ArithmeticExpression,ArithmeticExpression)
+    case multiplication(ArithmeticExpression,ArithmeticExpression)
+}
+
+let two = ArithmeticExpression.number(2)
+let five = ArithmeticExpression.number(5)
+let sum = ArithmeticExpression.addition(two,five)
+let mul = ArithmeticExpression.multiplication(two,five)
+
+func evaluate (_ expression:ArithmeticExpression) -> Int {
+    switch expression {
+        case let .number(value):
+            return value
+        case let .addition(left,right):
+            return evaluate(left) + evaluate(right)
+    case let .multiplication(left,right):
+        return evaluate(left) * evaluate(right)
+    }
+}
+
+print(evaluate(mul))
 
 
 
