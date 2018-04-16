@@ -41,7 +41,7 @@ class ViewController: UIViewController {
         }*/
         difference = abs(self.currentValue - self.targetValue)
         
-        let points = (difference > 0) ? 100 - difference : 1000
+        var points = (difference > 0) ? 100 - difference : 1000
         
         self.score += points
         self.scoreLabel.text = "\(self.score)"
@@ -59,19 +59,27 @@ class ViewController: UIViewController {
             title = "Puntuación perfecta"
         case 1...5:
             title = "Puntuación casi perfecta"
+            points = Int(1.5 * Float(points))
+        case 6...12:
+            title = "Puntuación casi perfecta"
+            points = Int(1.2 * Float(points))
         default:
             title = "Intenta nuevamente"
         }
         
-        let alert = UIAlertController(title:"Hola mundo",message:message,preferredStyle:.alert)
-        let action = UIAlertAction(title:"Genial",style:.default,handler:nil)
+        let alert = UIAlertController(title:title,message:message,preferredStyle:.alert)
+        let action = UIAlertAction(title:"Genial",style:.default,handler:{
+            action in
+            self.startNewRound()
+            self.updateLabels()
+        })
         
         alert.addAction(action)
         
         present(alert,animated: true)
         
-        startNewRound()
-        updateLabels()
+        //startNewRound()
+        //updateLabels()
     }
     
     @IBAction func sliderMoved(_ sender: UISlider) {
@@ -81,7 +89,7 @@ class ViewController: UIViewController {
     func startNewRound(){
         //Todos los números son probables número entre 1 y 100
         self.targetValue = 1 + Int(arc4random_uniform(100))
-        self.currentValue = lroundf(slider.value)
+        self.currentValue = 50 //lroundf(slider.value)
         self.slider.value = Float(self.currentValue)
         self.round += 1
     }
@@ -90,6 +98,17 @@ class ViewController: UIViewController {
         self.targetLabel.text = "\(self.targetValue)"
         self.scoreLabel.text = "\(self.score)"
         self.roundLabel.text = "\(self.round)"
+    }
+
+    @IBAction func restartGame(_ sender: UIButton) {
+        resetGame()
+        updateLabels()
+    }
+    
+    func resetGame(){
+        self.score = 0
+        self.round = 0
+        self.startNewRound()
     }
 }
 
