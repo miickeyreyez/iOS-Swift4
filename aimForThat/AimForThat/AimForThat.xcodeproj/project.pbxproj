@@ -13,6 +13,7 @@
 		AE90289E207C2D5F00F4362A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE90289C207C2D5F00F4362A /* Main.storyboard */; };
 		AE9028A0207C2D5F00F4362A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE90289F207C2D5F00F4362A /* Assets.xcassets */; };
 		AE9028A3207C2D5F00F4362A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE9028A1207C2D5F00F4362A /* LaunchScreen.storyboard */; };
+		AEF765D5208EA8E300D2AA1D /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = AEF765D4208EA8E300D2AA1D /* index.html */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		AE90289F207C2D5F00F4362A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AE9028A2207C2D5F00F4362A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AE9028A4207C2D5F00F4362A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AEF765D4208EA8E300D2AA1D /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 		AE902897207C2D5F00F4362A /* AimForThat */ = {
 			isa = PBXGroup;
 			children = (
+				AEF765D4208EA8E300D2AA1D /* index.html */,
 				AE902898207C2D5F00F4362A /* AppDelegate.swift */,
 				AE90289A207C2D5F00F4362A /* ViewController.swift */,
 				AE90289C207C2D5F00F4362A /* Main.storyboard */,
@@ -127,6 +130,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AE9028A3207C2D5F00F4362A /* LaunchScreen.storyboard in Resources */,
+				AEF765D5208EA8E300D2AA1D /* index.html in Resources */,
 				AE9028A0207C2D5F00F4362A /* Assets.xcassets in Resources */,
 				AE90289E207C2D5F00F4362A /* Main.storyboard in Resources */,
 			);

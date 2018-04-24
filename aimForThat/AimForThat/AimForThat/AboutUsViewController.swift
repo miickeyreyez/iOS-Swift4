@@ -7,13 +7,26 @@
 //
 
 import UIKit
+import WebKit
 
 class AboutUsViewController: UIViewController {
 
+    @IBOutlet var UIWebView: WKWebView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        if let url = Bundle.main.url(forResource: "index", withExtension: "html"){
+            print(url)
+        
+        if let htmlData = try? Data(contentsOf:url){
+         
+            let baseURL = URL(fileURLWithPath:Bundle.main.bundlePath)
+            self.UIWebView.load(htmlData,mimeType:"text/html",characterEncodingName: "UTF-8",baseURL:baseURL)
+        }
+        }
     }
 
     override func didReceiveMemoryWarning() {
